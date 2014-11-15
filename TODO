@@ -1,0 +1,5 @@
+1) Notify on connection lost
+2) App crashes on connection lost
+3) Even after pairing, device not showing under paired devices
+4) After conncetion lost, Server should turn on discoverability and Client should ask for Connecting again
+5) Better app open expriences in both the apps. (1) Client: should ask connecting a server (2) Server: should show connection status

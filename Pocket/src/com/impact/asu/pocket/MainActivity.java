@@ -113,7 +113,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	private void setupStage() {
-		Log.d(TAG, "setupChat()");
+		Log.d(TAG, "setupStage()");
 
 		// Initialize the send button with a listener that for click events
 		mSendButton = (Button) findViewById(R.id.button_send);
