@@ -19,10 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asu.impact.asuservices.BluetoothService;
+import com.impact.asu.hands.multitouch.MultiTouchActivity;
 
 public class MainActivity extends ActionBarActivity {
 
-	private static final String TAG = "BluetoothHands";
+	private static final String TAG = "BluetoothHandsMain";
 	private static final boolean D = true;
 
 	private BluetoothService mChatService = null;
@@ -69,7 +70,8 @@ public class MainActivity extends ActionBarActivity {
 			// Otherwise, setup the chat session
 		} else {
 			if (mChatService == null)
-				setupStage();
+				;
+				//setupStage();
 		}
 	}
 
@@ -97,6 +99,14 @@ public class MainActivity extends ActionBarActivity {
 		mOutStringBuffer = new StringBuffer("");
 	}
 
+	
+	/* Bring up the multitouch view 	*/
+	public void multiTouch(View v){
+    	//create Intent
+    	Intent intent = new Intent(getApplicationContext(), MultiTouchActivity.class);
+    	startActivity(intent);
+    }
+	
 	/*
 	 * Sends a message.
 	 * 

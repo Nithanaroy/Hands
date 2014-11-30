@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="10"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -30,6 +30,10 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/select_device"
             android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.impact.asu.hands.multitouch.MultiTouchActivity"
+            android:label="@string/title_activity_multi_touch" >
+        </activity>
     </application>
 
 </manifest>
