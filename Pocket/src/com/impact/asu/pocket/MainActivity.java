@@ -29,8 +29,11 @@ public class MainActivity extends ActionBarActivity {
 
 	// UI Components
 	private Button mSendButton;
+	private Button mDatabaseActivity;
 	private EditText mOutEditText;
 	private TextView incomingMessage;
+	private String lastMessage;
+	private int counter;
 
 	BluetoothAdapter mBluetoothAdapter = null;
 	
@@ -44,12 +47,27 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		//initialize some variables
+		counter = 0;
+		lastMessage = "init";
+		
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (mBluetoothAdapter == null) {
 			Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
 			finish();
 			return;
 		}
+		
+		mDatabaseActivity = (Button) findViewById(R.id.database_Display);
+		mDatabaseActivity.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				//opens the new activity TODO implement
+				Intent intent = new Intent(getApplicationContext(), DatabaseActivity.class); 
+				startActivity(intent);
+			}
+		});
+		
+		
 	}
 
 	@Override
@@ -175,7 +193,36 @@ public class MainActivity extends ActionBarActivity {
 				byte[] readBuf = (byte[]) msg.obj;
 				// construct a string from the valid bytes in the buffer
 				String readMessage = new String(readBuf, 0, msg.arg1);
-				incomingMessage.setText(mConnectedDeviceName + ":  " + readMessage);
+			
+				//use accelerometer data to detect a begin gesture // alternatively can use simple finger data
+				
+				//TODO : Simplistic
+				/*
+				 * 1.Detect an intended sign
+				 * 2.Save string to a class variable
+				 * 3.Start a timer 
+				 * 4.Confirm after 5 seconds 
+				 */
+				
+				if(lastMessage!= null && lastMessage.equals(readMessage.toString())){
+					counter++;
+					if (counter > 10){
+						
+						if(readMessage.contains("00000")) incomingMessage.setText(mConnectedDeviceName + ":  " + "getting data ...");
+						else if(readMessage.contains("00110")) incomingMessage.setText(mConnectedDeviceName + ":  " + "getting data");
+						else if(readMessage.contains("01110"))incomingMessage.setText(mConnectedDeviceName + ":  " + "Last Gesture detected : sorry ");
+						else if(readMessage.contains("01010"))incomingMessage.setText(mConnectedDeviceName + ":  " + "Last Gesture detected : bye bye ");
+						else if(readMessage.contains("11100"))incomingMessage.setText(mConnectedDeviceName + ":  " + "Last Gesture detected : Jumping detected");
+						else if(readMessage.contains("11110"))incomingMessage.setText(mConnectedDeviceName + ":  " + "Last Gesture detected : hello ");
+						counter = 0;
+					}
+					
+					
+				}
+				if(lastMessage.equals("init"))incomingMessage.setText(mConnectedDeviceName + ":  " + "unable to detect sign/gathering data");
+				lastMessage = readMessage.toString();
+				
+				//incomingMessage.setText(mConnectedDeviceName + ":  " + readMessage);
 				break;
 			case BluetoothService.MESSAGE_DEVICE_NAME:
 				// save the connected device's name

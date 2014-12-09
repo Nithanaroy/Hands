@@ -107,6 +107,16 @@ public class MainActivity extends ActionBarActivity {
     	startActivity(intent);
     }
 	
+	
+	
+	/*Bring up the ACCL view */
+	/* Bring up the multitouch view 	*/
+	public void acclGUI(View v){
+    	//create Intent
+    	Intent intent = new Intent(getApplicationContext(), AcclActivity.class);
+    	startActivity(intent);
+    }
+	
 	/*
 	 * Sends a message.
 	 * 

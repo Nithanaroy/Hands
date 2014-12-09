@@ -42,5 +42,12 @@
         android:layout_height="wrap_content"
         android:text="Multi Touch" 
         android:onClick= "multiTouch"/>
+   
+   <Button
+        android:id="@+id/buttonAcclScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accl GUI" 
+        android:onClick= "acclGUI"/>
 
 </LinearLayout>

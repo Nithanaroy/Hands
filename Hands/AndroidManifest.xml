@@ -5,11 +5,18 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="10"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -31,8 +38,17 @@
             android:label="@string/select_device"
             android:theme="@android:style/Theme.Dialog" />
         <activity
-            android:name="com.impact.asu.hands.multitouch.MultiTouchActivity"
-            android:label="@string/title_activity_multi_touch" >
+            android:name=".multitouch.MultiTouchActivity"
+            android:label="@string/title_activity_multi_touch"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".AcclActivity"
+            android:label="@string/title_activity_accl" >
+        </activity>
+        <activity
+            android:name=".SampleActivityDelete"
+            android:label="@string/title_activity_sample_activity_delete" >
         </activity>
     </application>
 
